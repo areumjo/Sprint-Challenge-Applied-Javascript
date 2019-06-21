@@ -1,20 +1,14 @@
 class Carousel {
     constructor(images) {
         this.images = images;
-        console.log(this.images);
 
         var imgArray = Array.from(this.images);
         var currentImage = imgArray[0];
-        console.log(currentImage);
         
         var imageIndices = imgArray.map((img) => img.dataset.tab);
-        console.log(imageIndices);
-        
         var currentImageIndex = currentImage.dataset.tab;
 
         this.currentIndex = imageIndices.indexOf(currentImageIndex);
-        console.log(this.currentIndex);
-
         this.images[this.currentIndex].style.display = "flex";
 
         var leftBtn = document.querySelector('.left-button');
@@ -22,22 +16,19 @@ class Carousel {
 
         leftBtn.addEventListener('click', () => this.left());
         rightBtn.addEventListener('click', () => this.right());
-
     }
+
     left() {
-        console.log('left work?');
         this.images[this.currentIndex].style.display = "none";
-        //console.log(this.currentIndex);
         this.currentIndex -= 1;
         if (this.currentIndex == -1) {
             this.currentIndex = 3;
         }
         this.images[this.currentIndex].style.display = "flex";
     }
+    
     right() {
-        console.log("right work?")
         this.images[this.currentIndex].style.display = "none";
-        //console.log(this.currentIndex);
         this.currentIndex += 1;
         if (this.currentIndex >= this.images.length) {
             this.currentIndex = 0;
@@ -48,8 +39,6 @@ class Carousel {
 
 const carousel = document.querySelector('.carousel');
 const images = document.querySelectorAll('.carousel img')
-// console.log(carousel);
-// console.log(images); //4 images
 
 toCarosel = new Carousel(images);
 
